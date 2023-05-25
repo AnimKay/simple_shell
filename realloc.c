@@ -17,11 +17,11 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * free - frees a string of strings
+ * ffree - frees a string of strings
  * @pp: string of strings
  *Return: nothing
  */
-void free(char **pp)
+void ffree(char **pp)
 {
 	char **a = pp;
 
