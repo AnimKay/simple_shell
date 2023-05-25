@@ -35,7 +35,7 @@ char **strtow(char *str, char *d)
 		s[b] = malloc((c + 1) * sizeof(char));
 		if (!s[b])
 		{
-			for (c = 0; c < j; c++)
+			for (c = 0; c < b; c++)
 				free(s[c]);
 			free(s);
 			return (NULL);
@@ -80,7 +80,7 @@ char **strtow2(char *str, char d)
 		s[b] = malloc((k + 1) * sizeof(char));
 		if (!s[b])
 		{
-			for (k = 0; k < j; k++)
+			for (k = 0; k < b; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
