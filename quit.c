@@ -1,30 +1,30 @@
 #include "shell.h"
 
 /**
- **_strncpy - copies a string
+ **_strncpy - duplicates a string
  *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
+ *@src: the source of the string
+ *@n: the number of characters to be copied
  *Return: the concatenated string
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int i, j;
+	int a, b;
 	char *s = dest;
 
 	i = 0;
-	while (src[i] != '\0' && i < n - 1)
+	while (src[a] != '\0' && a < n - 1)
 	{
-		dest[i] = src[i];
-		i++;
+		dest[a] = src[a];
+		a++;
 	}
-	if (i < n)
+	if (a < n)
 	{
-		j = i;
-		while (j < n)
+		b = a;
+		while (b < n)
 		{
-			dest[j] = '\0';
-			j++;
+			dest[b] = '\0';
+			b++;
 		}
 	}
 	return (s);
@@ -39,21 +39,21 @@ char *_strncpy(char *dest, char *src, int n)
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	int i, j;
+	int a, b;
 	char *s = dest;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < n)
+	a = 0;
+	b = 0;
+	while (dest[a] != '\0')
+		a++;
+	while (src[b] != '\0' && b < n)
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		dest[a] = src[b];
+		a++;
+		b++;
 	}
-	if (j < n)
-		dest[i] = '\0';
+	if (b < n)
+		dest[a] = '\0';
 	return (s);
 }
 
