@@ -1,31 +1,31 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts a string to an integer
+ * _erratoi - changes a string to an integer
  * @s: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
 int _erratoi(char *s)
 {
-	int i = 0;
-	unsigned long int result = 0;
+	int a = 0;
+	unsigned long int res = 0;
 
 	if (*s == '+')
 		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	for (a = 0;  s[a] != '\0'; a++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[a] >= '0' && s[a] <= '9')
 		{
-			result *= 10;
-			result += (s[i] - '0');
-			if (result > INT_MAX)
+			res *= 10;
+			res += (s[a] - '0');
+			if (res > INT_MAX)
 				return (-1);
 		}
 		else
 			return (-1);
 	}
-	return (result);
+	return (res);
 }
 
 /**
