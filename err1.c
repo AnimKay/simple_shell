@@ -1,39 +1,39 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts a string to an integer
- * @s: the string to be converted
+ * _erratoi - converts the string to an integer
+ * @s: string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
- *       -1 on error
+ *       -1 if error
  */
 int _erratoi(char *s)
 {
-	int i = 0;
-	unsigned long int result = 0;
+	int a = 0;
+	unsigned long int res = 0;
 
 	if (*s == '+')
 		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	for (a = 0;  s[a] != '\0'; a++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[a] >= '0' && s[a] <= '9')
 		{
-			result *= 10;
-			result += (s[i] - '0');
-			if (result > INT_MAX)
+			res *= 10;
+			res += (s[a] - '0');
+			if (res > INT_MAX)
 				return (-1);
 		}
 		else
 			return (-1);
 	}
-	return (result);
+	return (res);
 }
 
 /**
- * print_error - prints an error message
- * @info: the parameter & return info struct
- * @estr: string containing specified error type
+ * print_error - prints the error message
+ * @info: parameter & return info struct
+ * @estr: string with specified error type
  * Return: 0 if no numbers in string, converted number otherwise
- *        -1 on error
+ *        -1 if failed
  */
 void print_error(info_t *info, char *estr)
 {
@@ -53,36 +53,36 @@ void print_error(info_t *info, char *estr)
  *
  * Return: number of characters printed
  */
-int print_d(int input, int fd)
+int print_d(int input, int bk)
 {
 	int (*__putchar)(char) = _putchar;
-	int i, count = 0;
-	unsigned int _abs_, current;
+	int a, cou = 0;
+	unsigned int _abs_, curr;
 
-	if (fd == STDERR_FILENO)
+	if (bk == STDERR_FILENO)
 		__putchar = _eputchar;
 	if (input < 0)
 	{
 		_abs_ = -input;
 		__putchar('-');
-		count++;
+		cou++;
 	}
 	else
 		_abs_ = input;
-	current = _abs_;
-	for (i = 1000000000; i > 1; i /= 10)
+	curr = _abs_;
+	for (a = 1000000000; a > 1; a /= 10)
 	{
-		if (_abs_ / i)
+		if (_abs_ / a)
 		{
-			__putchar('0' + current / i);
-			count++;
+			__putchar('0' + curr / a);
+			cou++;
 		}
-		current %= i;
+		curr %= a;
 	}
-	__putchar('0' + current);
-	count++;
+	__putchar('0' + curr);
+	cou++;
 
-	return (count);
+	return (cou);
 }
 
 /**
@@ -129,12 +129,12 @@ char *convert_number(long int num, int base, int flags)
  */
 void remove_comments(char *buf)
 {
-	int i;
+	int a;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (a = 0; buf[a] != '\0'; a++)
+		if (buf[a] == '#' && (!a || buf[a - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buf[a] = '\0';
 			break;
 		}
 }
