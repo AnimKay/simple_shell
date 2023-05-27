@@ -61,7 +61,7 @@ int write_history(info_t *info)
  */
 int read_history(info_t *info)
 {
-	int i, last = 0, linecount = 0;
+	int a, las = 0, linecnt = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
 	char *buf = NULL, *filename = get_history_file(info);
@@ -85,17 +85,17 @@ int read_history(info_t *info)
 	if (rdlen <= 0)
 		return (free(buf), 0);
 	close(fd);
-	for (i = 0; i < fsize; i++)
-		if (buf[i] == '\n')
+	for (a = 0; a < fsize; a++)
+		if (buf[a] == '\n')
 		{
-			buf[i] = 0;
-			build_history_list(info, buf + last, linecount++);
-			last = i + 1;
+			buf[a] = 0;
+			build_history_list(info, buf + las, linecnt++);
+			las =  + 1;
 		}
-	if (last != i)
-		build_history_list(info, buf + last, linecount++);
+	if (las != a)
+		build_history_list(info, buf + las, linecnt++);
 	free(buf);
-	info->histcount = linecount;
+	info->histcount = linecnt;
 	while (info->histcount-- >= HIST_MAX)
 		delete_node_at_index(&(info->history), 0);
 	renumber_history(info);
