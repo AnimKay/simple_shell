@@ -16,7 +16,7 @@ char **strtow(char *str, char *d)
 		return (NULL);
 	if (!d)
 		d = " ";
-	for (a = 0; str[b] != '\0'; c++)
+	for (a = 0; str[a] != '\0'; a++)
 		if (!is_delim(str[a], d) && (is_delim(str[a + 1], d) || !str[a + 1]))
 			numwords++;
 
