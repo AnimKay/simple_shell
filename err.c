@@ -49,15 +49,15 @@ int _eputchar(char c)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putfd(char c, int fd)
+int _putfd(char c, int bk)
 {
 	static int a;
 	static char buf[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, a);
-		a = 0;
+		write(bk, buf, a);
+		i = 0;
 	}
 	if (c != BUF_FLUSH)
 		buf[a++] = c;
