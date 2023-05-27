@@ -28,8 +28,8 @@ char **strtow(char *str, char *d)
 	for (a = 0, b = 0; b < numwords; b++)
 	{
 		while (is_delim(str[a], d))
-			d++;
-		a = 0;
+			a++;
+		c = 0;
 		while (!is_delim(str[a + c], d) && str[a + c])
 			c++;
 		s[b] = malloc((c + 1) * sizeof(char));
