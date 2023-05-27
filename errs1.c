@@ -134,7 +134,7 @@ void remove_comments(char *buf)
 	for (a = 0; buf[a] != '\0'; a++)
 		if (buf[a] == '#' && (!a || buf[a - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buf[a] = '\0';
 			break;
 		}
 }
