@@ -19,7 +19,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
+#if USE_GETs_LINE
 		r = getline(buf, &len_p, stdin);
 #else
 		r = _getline(info, buf, &len_p);
@@ -58,7 +58,7 @@ ssize_t get_input(info_t *info)
 	char **buf_p = &(info->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = input_buf(info, &buf, &len);
+	r = input_buf(info, &buf, &lens);
 	if (r == -1) /* EOF */
 		return (-1);
 	if (lens)	/* we have commands left in the chain buffer */
