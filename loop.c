@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * hsh - main shell loop
+ * hsh - main loop of the shell program
  * @info: the parameter & return info struct
  * @av: the argument vector from main()
  *
@@ -54,7 +54,7 @@ int hsh(info_t *info, char **av)
  */
 int find_builtin(info_t *info)
 {
-	int i, built_in_ret = -1;
+	int a, built_in_ret = -1;
 	builtin_table builtintbl[] = {
 		{"exit", _myexit},
 		{"env", _myenv},
@@ -67,11 +67,11 @@ int find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+	for (a = 0; builtintbl[a].type; a++)
+		if (_strcmp(info->argv[0], builtintbl[a].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
+			built_in_ret = builtintbl[a].func(info);
 			break;
 		}
 	return (built_in_ret);
