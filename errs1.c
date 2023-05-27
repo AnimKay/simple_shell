@@ -56,8 +56,8 @@ void print_error(info_t *info, char *estr)
 int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
-	int a, count = 0;
-	unsigned int _abs_, current;
+	int a, cou = 0;
+	unsigned int _abs_, curr;
 
 	if (fd == STDERR_FILENO)
 		__putchar = _eputchar;
@@ -65,24 +65,24 @@ int print_d(int input, int fd)
 	{
 		_abs_ = -input;
 		__putchar('-');
-		count++;
+		cou++;
 	}
 	else
 		_abs_ = input;
-	current = _abs_;
+	curr = _abs_;
 	for (a = 1000000000; a > 1; a /= 10)
 	{
 		if (_abs_ / a)
 		{
-			__putchar('0' + current / a);
-			count++;
+			__putchar('0' + curr / a);
+			cou++;
 		}
-		current %= a;
+		curr %= a;
 	}
-	__putchar('0' + current);
-	count++;
+	__putchar('0' + curr);
+	cou++;
 
-	return (count);
+	return (cou);
 }
 
 /**
