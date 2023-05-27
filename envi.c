@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
+ * _myenv - displays the current environment
+ * @info: Structure containing potential arguments for maintaining
  *          constant function prototype.
  * Return: Always 0
  */
@@ -61,15 +61,15 @@ int _mysetenv(info_t *info)
  */
 int _myunsetenv(info_t *info)
 {
-	int i;
+	int a;
 
 	if (info->argc == 1)
 	{
 		_eputs("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= info->argc; i++)
-		_unsetenv(info, info->argv[i]);
+	for (a = 1; a <= info->argc; a++)
+		_unsetenv(info, info->argv[a]);
 
 	return (0);
 }
