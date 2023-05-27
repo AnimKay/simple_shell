@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _myexit - exits the shell
+ * _myexit - quits the shell
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: exits with a given exit status
@@ -9,12 +9,12 @@
  */
 int _myexit(info_t *info)
 {
-	int exitcheck;
+	int quitcheck;
 
 	if (info->argv[1])  /* If there is an exit arguement */
 	{
-		exitcheck = _erratoi(info->argv[1]);
-		if (exitcheck == -1)
+		quitcheck = _erratoi(info->argv[1]);
+		if (quitcheck == -1)
 		{
 			info->status = 2;
 			print_error(info, "Illegal number: ");
@@ -30,8 +30,8 @@ int _myexit(info_t *info)
 }
 
 /**
- * _mycd - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
+ * _mycd - changes the directory of the process
+ * @info: Structure containing potential arguments for maintaining
  *          constant function prototype.
  *  Return: Always 0
  */
