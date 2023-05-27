@@ -2,10 +2,10 @@
 
 /**
  * _strcpy - duplicates a string
- * @dest: the destination of string
- * @src: the source of string
+ * @dest: the destination of the string
+ * @src: the source of the string
  *
- * Return: pointer to destination
+ * Return: pointer to the destination
  */
 char *_strcpy(char *dest, char *src)
 {
