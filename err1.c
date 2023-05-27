@@ -53,13 +53,13 @@ void print_error(info_t *info, char *estr)
  *
  * Return: number of characters printed
  */
-int print_d(int input, int fd)
+int print_d(int input, int bk)
 {
 	int (*__putchar)(char) = _putchar;
 	int a, cou = 0;
 	unsigned int _abs_, curr;
 
-	if (fd == STDERR_FILENO)
+	if (bk == STDERR_FILENO)
 		__putchar = _eputchar;
 	if (input < 0)
 	{
