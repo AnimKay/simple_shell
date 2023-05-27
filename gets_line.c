@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * input_buf - buffers chained commands
+ * input_buf - buffers chained commands given
  * @info: parameter struct
  * @buf: address of buffer
  * @len: address of len var
@@ -13,9 +13,9 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 	ssize_t r = 0;
 	size_t len_p = 0;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!*len)
 	{
-		/*bfree((void **)info->cmd_buf);*/
+		
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
@@ -34,7 +34,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			info->linecount_flag = 1;
 			remove_comments(*buf);
 			build_history_list(info, *buf, info->histcount++);
-			/* if (_strchr(*buf, ';')) is this a command chain? */
+			
 			{
 				*len = r;
 				info->cmd_buf = buf;
@@ -45,7 +45,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 }
 
 /**
- * get_input - gets a line minus the newline
+ * get_input - gets a line without the newline
  * @info: parameter struct
  *
  * Return: bytes read
@@ -53,7 +53,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 ssize_t get_input(info_t *info)
 {
 	static char *buf; /* the ';' command chain buffer */
-	static size_t i, j, len;
+	static size_t a, b, lens;
 	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
 
@@ -61,23 +61,23 @@ ssize_t get_input(info_t *info)
 	r = input_buf(info, &buf, &len);
 	if (r == -1) /* EOF */
 		return (-1);
-	if (len)	/* we have commands left in the chain buffer */
+	if (lens)	/* we have commands left in the chain buffer */
 	{
-		j = i; /* init new iterator to current buf position */
-		p = buf + i; /* get pointer for return */
+		b = a; /* init new iterator to current buf position */
+		p = buf + a; /* get pointer for return */
 
-		check_chain(info, buf, &j, i, len);
-		while (j < len) /* iterate to semicolon or end */
+		check_chain(info, buf, &b, a, lens);
+		while (b < lens) /* iterate to semicolon or end */
 		{
-			if (is_chain(info, buf, &j))
+			if (is_chain(info, buf, &b))
 				break;
-			j++;
+			b++;
 		}
 
-		i = j + 1; /* increment past nulled ';'' */
-		if (i >= len) /* reached end of buffer? */
+		a = b + 1; /* increment past nulled ';'' */
+		if (a >= lens) /* reached end of buffer? */
 		{
-			i = len = 0; /* reset position and length */
+			a = lens = 0; /* reset position and length */
 			info->cmd_buf_type = CMD_NORM;
 		}
 
